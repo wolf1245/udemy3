@@ -655,6 +655,12 @@ window.addEventListener('DOMContentLoaded', () => {
             return current.textContent =  slideIndex;
         }
     }
+
+    // ф-я замены не цифр на пустоту
+    function replaceToNotNumber(str)
+    {
+        return +str.replace(/\D/g, '');
+    }
     //обработка клика
     next.addEventListener('click', () => {
         /**
@@ -663,14 +669,17 @@ window.addEventListener('DOMContentLoaded', () => {
          * чтоб вернуться в начало
          * обязательно унарный плюс превращаем строку '500px' в число +width.slice(0, width.length - 2)
          */
-        if (offset == (+width.slice(0, width.length - 2) * (slides.length - 1))) 
+        if (offset == (replaceToNotNumber(width) * (slides.length - 1))) 
         {
             offset = 0;
         } 
         else 
         {
             // если не последний слайд добавляем смещение
-            offset += +width.slice(0, width.length - 2); 
+            /**
+             * Почему ф-я именно здесь не срабатывает без унарного плюса
+             */
+            offset += replaceToNotNumber(width); 
         }
 
         // передаем на сколько нужно здивунуть слайд
@@ -700,12 +709,12 @@ window.addEventListener('DOMContentLoaded', () => {
         if (offset == 0) 
         {
             // просчитываем то количество на которое сдвинуть
-            offset = +width.slice(0, width.length - 2) * (slides.length - 1);
+            offset = replaceToNotNumber(width) * (slides.length - 1);
         } 
         else 
         {
             // просчитываем то количество на которое сдвинуть
-            offset -= +width.slice(0, width.length - 2);
+            offset -= replaceToNotNumber(width);
         }
 
         // передаем на сколько нужно здивунуть слайд
@@ -738,8 +747,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
             // переназначаем индекс на индекс ли
             slideIndex = slideTo;
-            // просчитываем на сколько нужно сдвинуть слайдер
-            offset = +width.slice(0, width.length - 2) * (slideTo - 1);
+            // просчитываем на сколько нужно сдвинуть слайдер, с помощью регулярки заменяем все не цифры на пустоту
+            offset = replaceToNotNumber(width) * (slideTo - 1);
             // сколько нужно сдвинуть
             slidesField.style.transform = `translateX(-${offset}px)`;
 
