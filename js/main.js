@@ -1,4 +1,5 @@
 // строгая типизация
+
 "use strict"
 // обращение к DOMElementam
 window.addEventListener('DOMContentLoaded', () => {
