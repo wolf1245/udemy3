@@ -8,8 +8,19 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "json-server": "^0.16.1"
+    "json-server": "^0.16.1",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12"
   },
   "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wolf1245/udemy3.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/wolf1245/udemy3/issues"
+  },
+  "homepage": "https://github.com/wolf1245/udemy3#readme",
   "description": ""
 }
